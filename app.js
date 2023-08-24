@@ -1,13 +1,31 @@
-import  express  from "express";
+import express from "express";
+import dotenv from 'dotenv'
+import conn from './db.js'
+
+dotenv.config()
+
+//Conection to the Db
+conn()
+
 const app = express()
-const port = 3000
+const port = process.env.PORT
 const localhost = '127.0.0.1'
 
-app.get('/', (req,res)=>{
-    res.send('a')
+//ejs template engine
+app.set('view engine', 'ejs')
+
+// Static files
+app.use(express.static('public'))
+
+app.get('/', (req, res) => {
+    res.render('index')
 })
 
-app.listen(port, ()=>{
+app.get('/about', (req, res) => {
+    res.render('about')
+})
+
+app.listen(port, () => {
     console.log(`Server calisiyor, http://${localhost}:${port}`);
 })
 
