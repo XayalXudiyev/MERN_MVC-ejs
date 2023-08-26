@@ -6,4 +6,8 @@ const getAboutPage = (req, res) => {
     res.render('about')
 }
 
-export {getAboutPage, getIndexPage}
+const getPhotosPage = (req, res) => {
+    res.render('photos')
+}
+
+export {getAboutPage, getIndexPage, getPhotosPage}

@@ -7,4 +7,6 @@ router.route('/').get(pageController.getIndexPage)
 
 router.route('/about').get(pageController.getAboutPage) 
 
+router.route('/photos').get(pageController.getPhotosPage) 
+
 export default router
