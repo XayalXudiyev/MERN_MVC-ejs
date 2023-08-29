@@ -39,17 +39,19 @@ const loginUser = async (req, res) => {        //DB da user yaratmaq
         }
 
         if (same) {
-            res.status(200).json({
-                loggedUser,
-                token: createToken(loggedUser._id)
+
+            const token = createToken(loggedUser._id)
+            res.cookie('jsonWebToken', token, {
+                httpOnly: true,
+                maxAge: 1000 * 60 * 60 * 24,
             })
+            res.redirect('/users/dashboard')
         } else {
             res.status(401).json({
                 succeded: false,
                 error: 'password are not matched'
             })
         }
-
     } catch (error) {
         res.status(500).json({
             succeded: false,
@@ -60,10 +62,13 @@ const loginUser = async (req, res) => {        //DB da user yaratmaq
 
 
 const createToken = (userId) => {
-    return jwt.sign(
-        { userId },
-        process.env.JWT_SECRET,
-        { expiresIn: '1d' })
+    return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1d' })
 }
 
-export { createUser, loginUser };
+
+const getDashboardpage = (req, res) => {
+    res.render('dashboard', {
+        link: "dashboard",
+    })
+}
+export { createUser, loginUser, getDashboardpage };
