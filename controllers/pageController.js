@@ -29,9 +29,16 @@ const getLoginPage = (req, res) => {
     })
 }
 
+const getLogout = (req, res) => {
+    res.cookie('jsonWebToken', '', {
+        maxAge: 1,
+    }),
+    res.redirect('/')
+}
 
 
-export { getAboutPage, getIndexPage, getPhotosPage, getRegisterPage,getLoginPage }
+
+export { getAboutPage, getIndexPage, getPhotosPage, getRegisterPage,getLoginPage,getLogout }
 
 
 

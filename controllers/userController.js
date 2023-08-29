@@ -5,12 +5,8 @@ import jwt from "jsonwebtoken";
 const createUser = async (req, res) => {        //DB da user yaratmaq
     try {
         const user = await User.create(req.body)
-        res.status(201).json(
-            {
-                succeded: true,
-                user
-            }
-        )
+        res.redirect('/login')
+
     } catch (error) {
         res.status(500).json(
             {
@@ -37,9 +33,7 @@ const loginUser = async (req, res) => {        //DB da user yaratmaq
                 error: 'There is  no such user'
             })
         }
-
         if (same) {
-
             const token = createToken(loggedUser._id)
             res.cookie('jsonWebToken', token, {
                 httpOnly: true,
@@ -66,9 +60,12 @@ const createToken = (userId) => {
 }
 
 
+
 const getDashboardpage = (req, res) => {
     res.render('dashboard', {
         link: "dashboard",
     })
 }
+
+
 export { createUser, loginUser, getDashboardpage };
