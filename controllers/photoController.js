@@ -1,10 +1,10 @@
-import Photo from "../models/PhotoModel.js";
+import Photo from "../models/PhotoModel.js";     //Pgoto Modeli
 
-const createPhoto = async (req, res) => {
+const createPhoto = async (req, res) => {        //DB da photo yaratmaq
     try {
         const photo = await Photo.create(req.body)
         res.status(201).json(
-            {
+            { 
                 succeded: true,
                 photo
             }
@@ -18,7 +18,7 @@ const createPhoto = async (req, res) => {
     }
 }
 
-const getAllPhotos = async (req, res) => {
+const getAllPhotos = async (req, res) => {      //DB dan photoları gətirir
     try {
         const photos = await Photo.find({})
         res.status(200).render('photos',
@@ -38,7 +38,7 @@ const getAllPhotos = async (req, res) => {
 }
 
 
-const getAPhoto = async (req, res) => {
+const getAPhoto = async (req, res) => {     //Db'dan istənilən id'yə görə photo gətirir
     try {
         const OnePhoto = await Photo.findById({ _id: req.params.id })
         res.status(200).render('photo',

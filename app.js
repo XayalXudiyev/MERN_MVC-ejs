@@ -5,7 +5,7 @@ import pageRoute from './routes/pageRoute.js'
 import photoRoute from './routes/photoRoute.js'
 import userRoute from './routes/userRoute.js'
 
-dotenv.config()
+dotenv.config() 
 
 //Conection to the Db
 conn()

@@ -5,14 +5,14 @@ const getIndexPage = (req, res) => {
 }
 
 const getAboutPage = (req, res) => {
-    res.render('about', {
+    res.render('about', { 
         link: "about"
     })
 }
 
 const getPhotosPage = (req, res) => {
     res.render('photos', {
-        link: "index"
+        link: "photos"
     })
 }
 
@@ -23,7 +23,13 @@ const getRegisterPage = (req, res) => {
     })
 }
 
-export { getAboutPage, getIndexPage, getPhotosPage, getRegisterPage }
+const getLoginPage = (req, res) => {
+    res.render('login', {
+        link: "login"
+    })
+}
+
+export { getAboutPage, getIndexPage, getPhotosPage, getRegisterPage,getLoginPage }
 
 
 
