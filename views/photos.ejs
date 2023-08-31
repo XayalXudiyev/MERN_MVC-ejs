@@ -1,4 +1,4 @@
-<%- include('partials/_header') %>
+<%- include("partials/_header") %>
    <!-- body -->
 
    <body class="main-layout inner_page">
@@ -9,7 +9,7 @@
       <!-- end loader -->
 
       <!-- header -->
-      <%- include('partials/_menu') %>
+      <%- include("partials/_menu") %>
          <!-- end header inner -->
          <!-- gallery -->
          <div class="gallery">
@@ -24,36 +24,35 @@
                </div>
                <div class="tz-gallery">
                   <div class="row">
-                   
-                    <% for( foto of photos    ) { %>
-                    
-                     <div class="col-lg-4 col-md-6 ma_bottom30">
-                        <div class="lightbox">
-                           <img src="images/g1.jpg" alt="Bridge">
-                           <div class="view_main">
-                              <div class="pose">
-                                 <a class="read_more" href="/photos/<%= foto._id %>/"><img src="images/ga.png" alt="#" /></a>
-                                 <h3 style="padding-top: 10px; padding-bottom: 10px;">
-                                 <%= foto.name %>
-                                 </h3>
-                                 <p style="padding-top: 10px; padding-bottom: 10px;">
-                                 <%= foto.description.substring(0,60)+'...' %></p>
+
+                     <% for (photo of photos) { %>
+                        <div class="col-lg-4 col-md-6 ma_bottom30">
+                           <div class="lightbox">
+                              <img src="<%= photo.url %>" alt="<%= photo.name %>">
+                              <div class="view_main">
+                                 <div class="pose">
+                                    <a class="read_more" href="/photos/<%= photo._id %>"><img src="images/ga.png"
+                                          alt="#" /></a>
+                                    <h3 style="padding-top:10px; padding-bottom:10px">
+                                       <%= photo.name %>
+                                    </h3>
+                                    <p style="padding-top:10px;">
+                                       <%= photo.description.substring(0, 80)+ "..." %>
+                                    </p>
+                                 </div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     
-                     <% } %>
 
+                        <% } %>
 
-
-                     <div class="col-md-12">
-                        <a class="plus_btn" href="/photos">+</a>
-                     </div>
+                           <div class="col-md-12">
+                              <a class="plus_btn" href="gallery.html">+</a>
+                           </div>
                   </div>
                </div>
             </div>
          </div>
          <!-- end gallery -->
          <!-- end footer -->
-         <%- include('partials/_footer') %>
+         <%- include("partials/_footer") %>

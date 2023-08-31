@@ -20,12 +20,12 @@
                      <div class="titlepage text_align_left">
                         <h3 style="font-size: 24px !important;"><%= OnePhoto.name %></h3>
                         <p><%= OnePhoto.description %> </p>
-                        <a class="read_more" href="about.html">Read More</a>
+                        <a class="read_more" href="/users/<%= OnePhoto.user._id %>"><%= OnePhoto.user.username %></a>
                      </div>
                   </div>
                   <div class="col-md-6">
                      <div class="about_img">
-                        <figure><img src="/images/about_img.png" alt="#" /></figure>
+                        <figure><img src="<%= OnePhoto.url %>" alt="<%= OnePhoto.name %>" /></figure>
                      </div>
                   </div>
                </div>
