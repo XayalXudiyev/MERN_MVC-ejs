@@ -77,7 +77,7 @@ const deletePhoto = async (req, res) => {
 
     const photoId = photo.image_id;
 
-    await cloudinary.uploader.destroy(photoId); //cloudinaryden silmek
+    await cloudinary.uploader.destroy(photoId);
     await Photo.findOneAndRemove({ _id: req.params.id });
 
     res.status(200).redirect('/users/dashboard');
@@ -95,7 +95,7 @@ const updatePhoto = async (req, res) => {
 
     if (req.files) {
       const photoId = photo.image_id;
-      await cloudinary.uploader.destroy(photoId);  
+      await cloudinary.uploader.destroy(photoId);
 
       const result = await cloudinary.uploader.upload(
         req.files.image.tempFilePath,

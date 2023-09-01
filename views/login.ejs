@@ -1,5 +1,4 @@
-<%- include('partials/_header') %>
-
+<%- include("partials/_header") %>
    <!-- body -->
 
    <body class="main-layout inner_page">
@@ -10,8 +9,7 @@
       <!-- end loader -->
 
       <!-- header -->
-      <%- include('partials/_menu') %>
-
+      <%- include("partials/_menu") %>
          <!-- end header inner -->
          <!-- contact -->
          <div class="contact">
@@ -23,16 +21,14 @@
                      </div>
                   </div>
                   <div class="col-md-8 offset-md-2">
-                     <form id="request" class="main_form" action="users/login" method="Post">
+                     <form id="request" class="main_form" action="users/login" method="POST">
                         <div class="row">
                            <div class="col-md-12">
                               <input class="form_control" placeholder="Username" type="text" name="username">
                            </div>
-                           
                            <div class="col-md-12">
                               <input class="form_control" placeholder="Password" type="password" name="password">
                            </div>
-                          
                            <div class="col-md-12">
                               <div class="group_form">
                                  <button class="send_btn">Login</button>
@@ -46,4 +42,4 @@
          </div>
          <!-- end contact -->
          <!-- end footer -->
-         <%- include('partials/_footer') %>
+         <%- include("partials/_footer") %>

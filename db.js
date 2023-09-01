@@ -1,15 +1,18 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const conn = () => {
-    mongoose.connect(process.env.DB_URI, {
-        dbName: 'Lenslight',
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }).then(() => {
-        console.log('Connected to the DB succesfully');
-    }).catch((err) => {
-        console.log(`Db connection err:, ${err}`);
+  mongoose
+    .connect(process.env.DB_URI, {
+      dbName: 'FirstNodeJs',
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     })
-}
+    .then(() => {
+      console.log('Connected to the DB succesully');
+    })
+    .catch((err) => {
+      console.log(`DB connection err:, ${err}`);
+    });
+};
 
-export default conn; 
+export default conn;

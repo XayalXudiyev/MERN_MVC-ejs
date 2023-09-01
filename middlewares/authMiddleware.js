@@ -1,58 +1,49 @@
-import User from "../models/UserModel.js"
-import jwt from "jsonwebtoken";
-
+import User from '../models/UserModel.js';
+import jwt from 'jsonwebtoken';
 
 const checkUser = async (req, res, next) => {
+  const token = req.cookies.jwt;
 
-    const token = req.cookies.jsonWebToken
-
-    if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
-            if (err) {
-                console.log(err.message);
-                res.locals.user = null
-                next()
-            } else {
-                const user = await User.findById(decodedToken.userId)
-                res.locals.user = user
-                next()
-            }
-        })
-    }else{
-        res.locals.user=null
-        next()
-    }
-}
-
+  if (token) {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+      if (err) {
+        console.log(err.message);
+        res.locals.user = null;
+        next();
+      } else {
+        const user = await User.findById(decodedToken.userId);
+        res.locals.user = user;
+        next();
+      }
+    });
+  } else {
+    res.locals.user = null;
+    next();
+  }
+};
 
 const authenticateToken = async (req, res, next) => {
-    try {
-        // const authHeader = req.headers['authorization']
-        // console.log('authHeader',authHeader);
+  try {
+    const token = req.cookies.jwt;
 
-        // const token = authHeader && authHeader.split(' ')[1]
-        // console.log('token', token)
-
-        const token = req.cookies.jsonWebToken
-
-        if (token) {
-            jwt.verify(token, process.env.JWT_SECRET, (err) => {
-                if (err) {
-                    console.log(err.message);
-                    res.redirect('/login')
-                } else {
-                    next()
-                }
-            })
+    if (token) {
+      jwt.verify(token, process.env.JWT_SECRET, (err) => {
+        if (err) {
+          console.log(err.message);
+          res.redirect('/login');
         } else {
-            res.redirect('/login')
+          next();
         }
-    } catch (error) {
-        res.status(401).json({
-            succeded: false,
-            error: 'Not authorized'
-        })
+      });
+    } else {
+      res.redirect('/login');
     }
-}
+  } catch (error) {
+    res.status(401).json({
+      succeeded: false,
+      error: 'Not authorized',
+    });
+  }
+};
 
-export { authenticateToken , checkUser }
+export { authenticateToken, checkUser };
